@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ToDo App </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .container{
+            width: 500px; margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div>
+        <input type="text" size="30" id="newItem"
+               placeholder="Type a new item here">
+        <button id="addItemBtn"> Add</button>
+    </div>
+
+    <hr>
+
+    New Item : <span id="newItemBinding" ></span>
+
+
+    <ul id="todoList"></ul>
+
+</div>
+
+<script>
+
+    var ToDoApp;
+
+
+    ToDoApp.ToDoController = (function () {
+        'use strict';
+
+        var items = [];
+
+
+        var todoList = $('#todoList');
+        var newItem = $('#newItem');
+        var addItemBtn = $('#addItemBtn');
+        var newItemBinding = $('#newItemBinding');
+
+
+        newItem.on('keyup', newItemBindingFn );
+        addItemBtn.on('click', addItemToList );
+        todoList.on('click','li', removeItem);
+
+
+
+
+        function render() {
+
+            todoList.empty();
+
+            for (var i = 0; i< items.length; i++) {
+                todoList.append( '<li>'+ items[i] + '<button> Delete </button></li>');
+            }
+
+
+        }
+
+        function newItemBindingFn() {
+            var val = newItem.val().trim();
+            newItemBinding.text(val);
+        }
+
+
+        function addItemToList() {
+            var val = newItem.val().trim();
+            items.push(val);
+            newItem.val('');
+            render();
+        }
+
+
+        function removeItem(event) {
+            var li = $(event.target).closest('li');
+            var index = todoList.find('li').index(li);
+            items.splice(index, 1);
+            render();
+        }
+
+
+        return {
+            addItemToList: addItemToList,
+            removeItem : removeItem
+        }
+
+
+
+
+    })();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="ToDoApp">
+<head>
+    <title> ToDo App </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <style>
+        .container{
+            width: 500px; margin: 50px auto;
+        }
+
+    </style>
+</head>
+<body>
+<!-- VIEW -->
+<div class="container" ng-controller="ToDoController">
+
+
+    <!-- Two-way data binding -->
+    <div >
+        <input type="text" size="30" ng-model="newItem"
+               placeholder="Type a new item here">
+        <button id="button" ng-click="addItemToList()"> Add</button>
+    </div>
+
+    <hr>
+    <!-- One-way data binding -->
+    New Item : {{newItem}}
+
+    <ul ng-repeat="item in items track by $index">
+        <li> {{item}} <button ng-click="removeItem($index)">Delete</button> </li>
+    </ul>
+
+</div>
+
+<script>
+    //Module
+    var myApp = angular.module("ToDoApp",[]);
+
+    //CONTROLLER
+    myApp.controller("ToDoController",["$scope",function($scope){
+
+        //MODEL - Properties and Behaviors
+        $scope.newItem = "";
+        $scope.items = [];
+
+        $scope.addItemToList = function(){
+
+            if($scope.newItem.trim() !== ""){
+                $scope.items.push($scope.newItem);
+                $scope.newItem="";
+            }
+        };
+
+        $scope.removeItem = function(index){
+            $scope.items.splice(index,1);
+        }
+
+    }]);
+
+
+</script>
+
+</body>
+</html>
