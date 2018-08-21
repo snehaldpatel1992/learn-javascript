@@ -12,6 +12,14 @@ angular.module("App",["ui.router","Login","ToDo"])
             templateUrl: 'app/Todo/todo.template.html'
 
         });
+    })
+    .config(function routeConfig($stateProvider, $urlRouterProvider) {
+
+        // set default routes when no path specified
+        $urlRouterProvider.when('', '/todo');
+        $urlRouterProvider.when('/', '/todo');
+        $urlRouterProvider.otherwise('/todo');
+
     });
 
 
