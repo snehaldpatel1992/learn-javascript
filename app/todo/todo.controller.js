@@ -22,8 +22,6 @@ angular.module("ToDo")
             }
         };
 
-        var [ a , b ] = [3,4];
-
         $scope.removeItem = function(index){
             $scope.items.splice(index,1);
         }
