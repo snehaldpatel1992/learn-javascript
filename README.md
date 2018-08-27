@@ -36,7 +36,7 @@ Multiple instance of Object
     function Person(name){
        this.name = name;
        this.sayName = function() {
-    	console.log("My name is "+ this.name)
+    	console.log('My name is '+ this.name)
        }
     }
     
@@ -53,7 +53,7 @@ Concept of prototype
        this.name = name;
     }
     Person.prototype.sayName = function() {
-        console.log("My name is "+ this.name)
+        console.log('My name is '+ this.name)
     }
 
 
@@ -87,11 +87,11 @@ Inheritance
     function Student(name){
        this.name = name;
        this.shoutName = function (){
-            console.log("My name is "+ this.name + '!');
+            console.log('My name is '+ this.name + '!');
         }
     }
     Student.prototype  = new Person();
-    var john = new Student(‘John’);
+    var john = new Student('John');
 
 
 ES6  syntactic sugar for inheritance
@@ -102,7 +102,7 @@ ES6  syntactic sugar for inheritance
             this.name = name;
         }
         sayName(){
-            console.log("My name is "+ this.name);
+            console.log('My name is '+ this.name);
         }
     }
     
@@ -111,7 +111,7 @@ ES6  syntactic sugar for inheritance
             super(name);
         }
         shoutName(){
-            console.log("My name is "+ this.name + '!');
+            console.log('My name is '+ this.name + '!');
         }
     }
 
