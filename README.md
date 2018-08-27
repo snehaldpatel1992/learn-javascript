@@ -61,7 +61,6 @@ ES6 syntactic sugar for prototype
 
     //ES6
     class Person {
-        name;
         constructor( name) {
             this.name = name;
         }
